@@ -7,7 +7,7 @@
   options.programs.hvim.enable =
     lib.mkEnableOption "my Neovim environment";
 
-  config = lib.mkIf config.programs.nvim.enable {
+  config = lib.mkIf config.programs.hvim.enable {
     home.packages = with pkgs; [
       neovim
 
