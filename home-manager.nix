@@ -16,7 +16,7 @@
       # plugins
       tree-sitter
       codeium
-     
+
       # Linters / Formatters
       stylua
       shfmt
@@ -39,6 +39,6 @@
       nerd-fonts.caskaydia-mono
     ];
 
-    home.file.".config/nvim".source = ./;
+    home.file.".config/nvim".source = ./.;
   };
 }
