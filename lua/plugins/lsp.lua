@@ -7,6 +7,8 @@ return {
     opts = {
       ---@type lspconfig.options
       servers = {
+
+        -- qml language server
         qmlls = {
           mason = false,
           filetypes = { "qml" },
@@ -14,28 +16,76 @@ return {
           on_new_config = function(new_config, _)
             new_config.cmd_env = vim.empty_dict()
           end,
-          on_attach = function(client, bufnr)
-            vim.diagnostic.config({
-              virtual_text = {
-                severity = {
-                  min = vim.diagnostic.severity.ERROR,
-                },
-              },
-              signs = {
-                severity = {
-                  min = vim.diagnostic.severity.ERROR,
-                },
-              },
-              underline = {
-                severity = {
-                  min = vim.diagnostic.severity.ERROR,
-                },
-              },
-            }, { bufnr = bufnr })
-          end,
         },
+
         -- pyright will be automatically installed with mason and loaded with lspconfig
         pyright = {},
+
+        -- Rust
+        rust_analyzer = {
+          mason = false,
+        },
+
+        wgsl_analyzer = {
+          mason = false,
+        },
+
+        -- C / C++
+        clangd = {
+          mason = false,
+        },
+
+        -- TypeScript / JavaScript
+        ts_ls = {
+
+          mason = false,
+        },
+
+        -- HTML / CSS / JSON
+        html = {},
+        cssls = {},
+        jsonls = {},
+
+        -- Lua
+        lua_ls = {
+
+          mason = false,
+          settings = {
+            Lua = {
+              diagnostics = {
+                globals = { "vim" },
+              },
+              workspace = {
+                checkThirdParty = false,
+              },
+              telemetry = {
+                enable = false,
+              },
+            },
+          },
+        },
+
+        -- Nix
+        nil_ls = {
+
+          mason = false,
+        },
+        -- nixd = {}, -- use this instead if you prefer nixd
+
+        -- Bash
+        bashls = {},
+
+        -- YAML
+        yamlls = {},
+
+        -- TOML
+        taplo = {},
+
+        -- Markdown
+        marksman = {
+
+          mason = false,
+        },
       },
     },
   },

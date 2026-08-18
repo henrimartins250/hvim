@@ -34,6 +34,9 @@
       rust-analyzer
       gopls
       lua-language-server
+      marksman
+      typescript-language-server
+      clang-tools
       kdePackages.qtdeclarative
 
       nerd-fonts.caskaydia-mono
