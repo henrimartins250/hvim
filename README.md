@@ -1,4 +1,24 @@
-# 💤 LazyVim
+# HVIM
 
-A starter template for [LazyVim](https://github.com/LazyVim/LazyVim).
-Refer to the [documentation](https://lazyvim.github.io/installation) to get started.
+henrique's neovim configuration
+
+## setting up on nixos:
+
+
+## setting up on windows:
+
+**PowerShell**
+```PowerShell
+git clone https://github.com/henrimartins250/hvim.git $env:LOCALAPPDATA\nvim
+```
+**CMD**
+```DOS
+git clone https://github.com/henrimartins250/hvim.git %LOCALAPPDATA%\nvim
+```
+
+
+## setting up on linux:
+**bash**
+```bash
+git clone https://github.com/henrimartins250/hvim.git ~/.config/nvim
+```
