@@ -22,7 +22,6 @@ return {
         "typescript",
         "vim",
         "yaml",
-        "wgsl", -- Added wgsl here
       }
 
       -- Merge your list safely into LazyVim's default parsers
