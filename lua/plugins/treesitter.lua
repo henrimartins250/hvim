@@ -3,8 +3,28 @@ return {
   -- add more treesitter parsers
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = function(_, opts)
-      local extra_parsers = {
+    init = function()
+      -- detect *.wgsl files
+      vim.filetype.add({ extension = { wgsl = "wgsl" } })
+
+      -- register the third-party wgsl parser so :TSInstall wgsl knows where to get it
+      -- (this is the API used by the nvim-treesitter "main" branch)
+      vim.api.nvim_create_autocmd("User", {
+        pattern = "TSUpdate",
+        callback = function()
+          require("nvim-treesitter.parsers").wgsl = {
+            install_info = {
+              url = "https://github.com/szebniok/tree-sitter-wgsl",
+              branch = "master", -- repo default branch (installer assumes "main")
+              queries = "queries", -- also installs the repo's highlights.scm and folds.scm
+            },
+          }
+        end,
+      })
+    end,
+    -- NOTE: must be nested in opts, and LazyVim list-extends these with its defaults
+    opts = {
+      ensure_installed = {
         "bash",
         "html",
         "javascript",
@@ -22,45 +42,8 @@ return {
         "typescript",
         "vim",
         "yaml",
-      }
-
-      -- Merge your list safely into LazyVim's default parsers
-      if type(opts.ensure_installed) == "table" then
-        for _, parser in ipairs(extra_parsers) do
-          if not vim.tbl_contains(opts.ensure_installed, parser) then
-            table.insert(opts.ensure_installed, parser)
-          end
-        end
-      else
-        opts.ensure_installed = extra_parsers
-      end
-
-      -- Register the WGSL filetype extension
-      vim.filetype.add({ extension = { wgsl = "wgsl" } })
-
-      -- Define the custom repository for the wgsl parser
-      -- (nvim-treesitter main branch requires registering parsers on TSUpdate)
-      vim.api.nvim_create_autocmd("User", {
-        pattern = "TSUpdate",
-        callback = function()
-          require("nvim-treesitter.parsers").wgsl = {
-            install_info = {
-              url = "https://github.com/szebniok/tree-sitter-wgsl",
-              queries = "queries", -- ships highlights.scm and folds.scm
-            },
-          }
-        end,
-      })
-
-      -- Apply your custom folding rules automatically when opening a wgsl file
-      vim.api.nvim_create_autocmd("FileType", {
-        pattern = "wgsl",
-        callback = function()
-          vim.opt_local.foldmethod = "expr"
-          vim.opt_local.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-          vim.opt_local.foldlevelstart = 99
-        end,
-      })
-    end,
+        "wgsl",
+      },
+    },
   },
 }
