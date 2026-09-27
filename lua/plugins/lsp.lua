@@ -71,6 +71,11 @@ return {
         },
         -- nixd = {}, -- use this instead if you prefer nixd
 
+        -- Sql
+        sqls = {
+          mason = false,
+        },
+
         -- Bash
         bashls = {},
 
@@ -82,7 +87,6 @@ return {
 
         -- Markdown
         marksman = {
-
           mason = false,
         },
       },

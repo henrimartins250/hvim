@@ -28,6 +28,9 @@
       clang-tools # C / C++
       gofumpt # Go
       taplo # TOML
+      pgformatter #
+      sql-formatter # SQL
+      sqlfluff #
 
       # Language Servers
       wgsl-analyzer
@@ -38,6 +41,7 @@
       typescript-language-server
       clang-tools
       kdePackages.qtdeclarative
+      sqls
 
       nerd-fonts.caskaydia-mono
     ];
